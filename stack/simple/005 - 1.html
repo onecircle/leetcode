@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>const 在for循环中的使用</title>
+	</head>
+
+	<body>
+		<script>
+			// 会报错
+			// Assignment to constant variable. 赋值给常量变量
+			// 这里需要使用let
+			// for (const i = 0; i < 10; i++) {
+			// 	console.log(i);
+			// }
+
+			// 不会报错
+			for (const ch of "abc") {
+				console.log(ch);
+			}
+
+			// 注意！
+			// 这里的index是字符串类型，巨坑
+			// for in 主要为遍历对象而设计，尽量避免遍历数组
+			for (const index in [1, 2, 3]) {
+				console.log(index);
+			}
+
+			// 原因
+			// for in 、for of 是迭代语句
+			// 每次循环都会创建一个块级作用域
+			// https://blog.csdn.net/JAVA_DeDe/article/details/110658108
+			// 什么叫迭代语句？
+		</script>
+	</body>
+</html>

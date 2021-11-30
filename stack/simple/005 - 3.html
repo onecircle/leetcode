@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>数组中下标为负数，不会报错，就是undefined</title>
+	</head>
+
+	<body>
+		<script>
+			const arr = [];
+			console.log(arr[-1]); // 不会报错，就是undefined
+
+			console.log(arr.length);
+			console.log(Boolean(arr.length)); // false
+
+			// false
+			if (arr.length) {
+				console.log(true);
+			} else {
+				console.log(false);
+			}
+
+			// if 的判断规则就是Boolean的规则吗
+		</script>
+	</body>
+</html>

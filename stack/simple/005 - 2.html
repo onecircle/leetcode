@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>关于 continue break return</title>
+	</head>
+
+	<body>
+		<script>
+			// 问题来源
+			// 文字逻辑是，遍历字符串，如果当前字符与栈顶元素一致，栈顶元素出栈，否则当前字符入栈
+			// 一开始写法
+			// 直接报错 Illegal return statement 非法的返回语句
+			// 都不会执行循环
+
+			// let stk = [];
+			// for (const ch of "abbaca") {
+			// 	if (stk.length && ch === stk[stk.length - 1]) {
+			// 		stk.pop();
+			// 		return;
+			// 	}
+			// 	stk.push(ch);
+			// }
+
+			// 注意，如果把这段代码放入函数，还不会报错，一脸懵逼还不知道为啥
+			// 因为 return只能在函数体中用
+			// 这段代码在电脑眼里就是，当if满足，返回某个值，而你还啥都没有返回，所以就打印undefined
+			// 并且在这里，for循环还会执行，直到遇到return，彻底结束，return后的值作为函数返回值
+			// function test() {
+			// 	let stk = [];
+			// 	for (const ch of "abbaca") {
+			// 		console.log(1);
+			// 		if (stk.length && ch === stk[stk.length - 1]) {
+			// 			stk.pop();
+			// 			return;
+			// 		}
+			// 		stk.push(ch);
+			// 	}
+			// }
+
+			// console.log(test()); // undefined
+
+			// 正确使用方式
+			// 在循环体中使用 continue 或者 break
+
+			// continue
+			// let stk = [];
+			// for (const ch of "abbaca") {
+			// 	if (stk.length && ch === stk[stk.length - 1]) {
+			// 		stk.pop();
+			// 		// 满足if条件进来，pop之后，结束这次循环，不执行push操作，开始下一次循环
+			// 		continue;
+			// 	}
+			// 	stk.push(ch);
+			// }
+			// console.log(stk);
+
+			// break
+			// let stk = [];
+			// for (const ch of "abbaca") {
+			// 	if (stk.length && ch === stk[stk.length - 1]) {
+			// 		stk.pop();
+			// 		// 跳出整个for循环，不再遍历
+			// 		break;
+			// 	}
+			// 	stk.push(ch);
+			// }
+			// console.log(stk);
+
+			// 总结
+			// return 函数中使用，结束函数并返回return之后的值
+			// continue 或者 break 循环体中使用，continue - 继续，break - 没必要继续了
+			// 从始至终就跟if else 分支语句没关系
+			// switch语句虽然也是分支语句，但可以使用continue 或者 break
+
+			// forEach 中必须使用 return，continue 或者 break 是非法的
+			// 且return的效果类似于for循环中使用continue，会把所有都循环完成
+			// 猜测 forEach 是迭代，不是循环，类似函数又不是函数，想知道为什么
+			// forEach 效果等价于 for of
+			const arr = [1, 2, 3, 4, 5];
+			// forEach 中不管 return 什么都没有返回值
+			const res = arr.forEach((item) => {
+				// console.log(item);
+				if (item > 3) {
+					console.log(2);
+					return 3;
+				}
+				console.log(1);
+			});
+			console.log(res);
+
+			// https://www.cnblogs.com/roashley/p/7752401.html break continue return
+			// https://www.jianshu.com/p/6845cff17fd3 forEach中return的问题
+		</script>
+	</body>
+</html>

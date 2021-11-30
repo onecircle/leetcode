@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>1047.删除字符串中的所有相邻重复项</title>
+	</head>
+
+	<body>
+		<script>
+			// 官方示例
+			// 输入 abbaca  输出 ca
+			function removeDuplicates(s) {
+				// 栈缩写stk
+				let stk = [];
+
+				// of 是获取item的
+				// in 是下标
+				for (const ch of s) {
+					if (stk.length && ch === stk[stk.length - 1]) {
+						stk.pop();
+						// forEach中的return是这个效果
+						continue;
+					}
+					stk.push(ch);
+				}
+
+				// 数组以固定间隔形式拼成字符串
+				return stk.join("");
+			}
+
+			console.log(removeDuplicates("abbaca"));
+		</script>
+	</body>
+</html>
